@@ -70,15 +70,25 @@ jobs:
         echo "$ANDROID_KEYSTORE_BASE64" | base64 -d > tilaawah-daily.keystore
         echo "Keystore created successfully"
         
+    - name: Configure Android Build
+      run: |
+        # Create gradle.properties with keystore configuration
+        cat >> android/gradle.properties << EOF
+MYAPP_RELEASE_STORE_FILE=../tilaawah-daily.keystore
+MYAPP_RELEASE_KEY_ALIAS=tilaawah-daily
+MYAPP_RELEASE_STORE_PASSWORD=tilaawah123
+MYAPP_RELEASE_KEY_PASSWORD=tilaawah123
+EOF
+        
     - name: Build APK
       run: |
-        eas build --platform android --profile preview --non-interactive
+        npx expo run:android --variant release
         
     - name: Find APK
       id: find_apk
       run: |
-        # EAS Build downloads the APK to current directory
-        APK_PATH=$(find . -name "*.apk" -type f | head -n 1)
+        # Local Expo build creates APK in android/app/build/outputs/apk/release
+        APK_PATH=$(find android/app/build/outputs/apk/release -name "*.apk" | head -n 1)
         echo "apk_path=$APK_PATH" >> $GITHUB_OUTPUT
         echo "Found APK: $APK_PATH"
         
