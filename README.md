@@ -12,7 +12,23 @@ A mobile application for daily Quran recitation and spiritual reminders built wi
 
 Tilaawah Daily is a comprehensive mobile app designed to help users maintain consistent Quran recitation habits with daily reminders, progress tracking, and spiritual guidance.
 
-## 📸 Screenshots
+## � Download & Installation
+
+### 📱 Android APK
+
+**Latest Release**: [Download APK here](https://github.com/midlaj-muhammed/Tilaawah-Daily/releases/latest)
+
+**Installation Steps**:
+1. Download the latest APK from releases
+2. Enable "Install from unknown sources" in device settings
+3. Install the APK file
+4. Launch Tilaawah Daily
+
+### 🛠️ Development Setup
+
+See [Getting Started](#-getting-started) section for development instructions.
+
+## �📸 Screenshots
 
 <div align="center">
 

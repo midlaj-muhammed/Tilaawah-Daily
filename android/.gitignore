@@ -4,7 +4,6 @@
 
 # Android/IntelliJ
 #
-build/
 .idea
 .gradle
 local.properties
@@ -14,3 +13,8 @@ local.properties
 
 # Bundle artifacts
 *.jsbundle
+
+# Keep build directory but ignore specific files
+build/
+!build/outputs/apk/release/
+!build/outputs/apk/release/*.apk

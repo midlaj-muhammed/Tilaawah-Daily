@@ -1,0 +1,125 @@
+name: Build and Release APK
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g., 1.0.0)'
+        required: true
+        default: '1.0.0'
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Setup Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+        
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v3
+      
+    - name: Cache node modules
+      uses: actions/cache@v3
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+          
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Setup Expo CLI
+      run: npm install -g @expo/cli
+      
+    - name: Setup Android build environment
+      run: |
+        echo "ANDROID_SDK_ROOT=$ANDROID_HOME" >> $GITHUB_ENV
+        echo "ANDROID_HOME=$ANDROID_HOME" >> $GITHUB_ENV
+        echo "$ANDROID_HOME/platform-tools" >> $GITHUB_PATH
+        echo "$ANDROID_HOME/tools" >> $GITHUB_PATH
+        
+    - name: Build APK
+      run: |
+        npx expo run:android --variant release
+        
+    - name: Find APK
+      id: find_apk
+      run: |
+        APK_PATH=$(find android/app/build/outputs/apk/release -name "*.apk" | head -n 1)
+        echo "apk_path=$APK_PATH" >> $GITHUB_OUTPUT
+        echo "Found APK: $APK_PATH"
+        
+    - name: Rename APK
+      run: |
+        cp ${{ steps.find_apk.outputs.apk_path }} Tilaawah-Daily-${{ github.ref_name || github.event.inputs.version }}.apk
+        
+    - name: Get APK info
+      id: apk_info
+      run: |
+        APK_FILE=Tilaawah-Daily-${{ github.ref_name || github.event.inputs.version }}.apk
+        APK_SIZE=$(du -h $APK_FILE | cut -f1)
+        echo "apk_file=$APK_FILE" >> $GITHUB_OUTPUT
+        echo "apk_size=$APK_SIZE" >> $GITHUB_OUTPUT
+        
+    - name: Create Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref_name || github.event.inputs.version }}
+        release_name: Tilaawah Daily ${{ github.ref_name || github.event.inputs.version }}
+        body: |
+          ## 📱 Tilaawah Daily ${{ github.ref_name || github.event.inputs.version }}
+          
+          ### 🚀 Features
+          - Daily Quran verses with translations
+          - Progress tracking and statistics
+          - Push notifications for reminders
+          - Audio recitation support
+          - Google authentication
+          - Beautiful, responsive design
+          
+          ### 📥 Installation
+          1. Download the APK file below
+          2. Enable "Install from unknown sources" on your Android device
+          3. Install the APK file
+          4. Launch Tilaawah Daily and enjoy!
+          
+          ### 📊 APK Information
+          - **File**: ${{ steps.apk_info.outputs.apk_file }}
+          - **Size**: ${{ steps.apk_info.outputs.apk_size }}
+          - **Version**: ${{ github.ref_name || github.event.inputs.version }}
+          - **Platform**: Android
+          
+          ---
+          
+          🙏 *Made with love for the Muslim Ummah*
+        draft: false
+        prerelease: false
+        
+    - name: Upload APK to Release
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ${{ steps.apk_info.outputs.apk_file }}
+        asset_name: ${{ steps.apk_info.outputs.apk_file }}
+        asset_content_type: application/vnd.android.package-archive
