@@ -83,16 +83,16 @@ jobs:
         
     - name: Setup Android Keystore
       run: |
-        echo "$ANDROID_KEYSTORE_BASE64" | base64 -d > tilaawah-daily.keystore
+        echo "$ANDROID_KEYSTORE_BASE64" | base64 -d > android/tilaawah-daily.keystore
         echo "Keystore created successfully"
-        ls -la tilaawah-daily.keystore
-        file tilaawah-daily.keystore
+        ls -la android/tilaawah-daily.keystore
+        file android/tilaawah-daily.keystore
         
     - name: Configure Android Build
       run: |
         # Create gradle.properties with keystore configuration
         cat >> android/gradle.properties << 'EOF'
-        MYAPP_RELEASE_STORE_FILE=../tilaawah-daily.keystore
+        MYAPP_RELEASE_STORE_FILE=tilaawah-daily.keystore
         MYAPP_RELEASE_KEY_ALIAS=tilaawah-daily
         MYAPP_RELEASE_STORE_PASSWORD=tilaawah123
         MYAPP_RELEASE_KEY_PASSWORD=tilaawah123
