@@ -1,7 +1,26 @@
 const { getDefaultConfig } = require('expo/metro-config');
 const path = require('path');
 
-const config = getDefaultConfig(__dirname);
+// Use a try-catch to handle potential compatibility issues
+let config;
+try {
+    config = getDefaultConfig(__dirname);
+} catch (error) {
+    console.error('Error loading default config:', error);
+    // Fallback to basic config if getDefaultConfig fails
+    config = {
+        resolver: {
+            unstable_enablePackageExports: true,
+            unstable_conditionNames: [
+                'react-native',
+                'browser',
+                'require',
+                'import',
+                'default',
+            ],
+        },
+    };
+}
 
 // Fix Firebase JS SDK module resolution for React Native / Metro.
 //
@@ -14,13 +33,15 @@ const config = getDefaultConfig(__dirname);
 // Solution: Use unstable_enablePackageExports to let Metro honor the
 // "exports" field in package.json, and add "react-native" as a
 // condition so Metro resolves to the RN-specific builds.
-config.resolver.unstable_enablePackageExports = true;
-config.resolver.unstable_conditionNames = [
-    'react-native',
-    'browser',
-    'require',
-    'import',
-    'default',
-];
+if (config.resolver) {
+    config.resolver.unstable_enablePackageExports = true;
+    config.resolver.unstable_conditionNames = [
+        'react-native',
+        'browser',
+        'require',
+        'import',
+        'default',
+    ];
+}
 
 module.exports = config;
