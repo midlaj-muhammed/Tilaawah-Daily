@@ -64,14 +64,19 @@ jobs:
         echo "ANDROID_HOME=$ANDROID_HOME" >> $GITHUB_ENV
         echo "$ANDROID_HOME/platform-tools" >> $GITHUB_PATH
         echo "$ANDROID_HOME/tools" >> $GITHUB_PATH
+        echo "$ANDROID_HOME/cmdline-tools/latest/bin" >> $GITHUB_PATH
         # Accept Android licenses
-        echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --licenses || true
         echo "y" | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
+        echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --licenses || true
+        # Install required Android components
+        $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0" || true
         
     - name: Setup Android Keystore
       run: |
         echo "$ANDROID_KEYSTORE_BASE64" | base64 -d > tilaawah-daily.keystore
         echo "Keystore created successfully"
+        ls -la tilaawah-daily.keystore
+        file tilaawah-daily.keystore
         
     - name: Configure Android Build
       run: |
@@ -82,6 +87,8 @@ MYAPP_RELEASE_KEY_ALIAS=tilaawah-daily
 MYAPP_RELEASE_STORE_PASSWORD=tilaawah123
 MYAPP_RELEASE_KEY_PASSWORD=tilaawah123
 EOF
+        echo "gradle.properties configured:"
+        tail -4 android/gradle.properties
         
     - name: Check Android Project
       run: |
