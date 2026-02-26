@@ -99,7 +99,7 @@ jobs:
         
     - name: Build APK
       run: |
-        npx expo run:android --variant release
+        cd android && ./gradlew assembleRelease
         
     - name: Find APK
       id: find_apk
