@@ -17,12 +17,12 @@ import { getReactNativePersistence } from 'firebase/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBedmkgo120xSShmXbYlYTrvU8fxohMKLo",
-    authDomain: "tilaawah-daily.firebaseapp.com",
-    projectId: "tilaawah-daily",
-    storageBucket: "tilaawah-daily.firebasestorage.app",
-    messagingSenderId: "232177874845",
-    appId: "1:232177874845:android:caa81dd0f57cc42897a174"
+    apiKey: process.env.EXPO_PUBLIC_FIREBASE_API_KEY || "",
+    authDomain: process.env.EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN || "tilaawah-daily.firebaseapp.com",
+    projectId: process.env.EXPO_PUBLIC_FIREBASE_PROJECT_ID || "tilaawah-daily",
+    storageBucket: process.env.EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET || "tilaawah-daily.firebasestorage.app",
+    messagingSenderId: process.env.EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID || "232177874845",
+    appId: process.env.EXPO_PUBLIC_FIREBASE_APP_ID || "1:232177874845:android:caa81dd0f57cc42897a174"
 };
 
 // Initialize Firebase app (singleton)

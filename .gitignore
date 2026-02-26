@@ -47,6 +47,10 @@ GoogleService-Info.plist
 .env.test.local
 .env.production.local
 
+# Firebase service account files (if any)
+service-account.json
+firebase-credentials.json
+
 # IDE and editor files
 .vscode/
 .idea/
