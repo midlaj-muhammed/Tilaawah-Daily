@@ -39,3 +39,33 @@ yarn-error.*
 # generated native folders
 /ios
 /android
+
+# Sensitive files and credentials
+*.json
+client_secret_*.json
+google-services.json
+GoogleService-Info.plist
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+logs
+*.log
+
+# Backup files
+*_backup/
+android_backup/
+
+# Temporary files
+tmp/
+temp/
