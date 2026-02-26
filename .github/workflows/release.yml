@@ -57,12 +57,13 @@ jobs:
         
     - name: Build APK
       run: |
-        npx expo run:android --variant release
+        npx eas build --platform android --profile production --non-interactive
         
     - name: Find APK
       id: find_apk
       run: |
-        APK_PATH=$(find android/app/build/outputs/apk/release -name "*.apk" | head -n 1)
+        # EAS Build downloads the APK to current directory
+        APK_PATH=$(find . -name "*.apk" -type f | head -n 1)
         echo "apk_path=$APK_PATH" >> $GITHUB_OUTPUT
         echo "Found APK: $APK_PATH"
         
