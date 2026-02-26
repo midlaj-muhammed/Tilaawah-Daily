@@ -92,7 +92,7 @@ jobs:
       run: |
         # Create gradle.properties with keystore configuration
         cat >> android/gradle.properties << 'EOF'
-        MYAPP_RELEASE_STORE_FILE=tilaawah-daily.keystore
+        MYAPP_RELEASE_STORE_FILE=../tilaawah-daily.keystore
         MYAPP_RELEASE_KEY_ALIAS=tilaawah-daily
         MYAPP_RELEASE_STORE_PASSWORD=tilaawah123
         MYAPP_RELEASE_KEY_PASSWORD=tilaawah123
