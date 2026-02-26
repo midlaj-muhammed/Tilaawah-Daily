@@ -118,9 +118,21 @@ jobs:
                 "android_client_info": {
                   "package_name": "com.tilaawah.daily"
                 }
+              },
+              "oauth_client": [],
+              "api_key": [
+                {
+                  "current_key": "AIzaSyDummyKeyForBuildPurposesOnly"
+                }
+              ],
+              "services": {
+                "appinvite_service": {
+                  "other_platform_oauth_client": []
+                }
               }
             }
-          ]
+          ],
+          "configuration_version": "1"
         }
         EOF
         echo "google-services.json created for build"
