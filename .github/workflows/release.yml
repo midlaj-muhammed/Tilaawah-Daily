@@ -36,7 +36,7 @@ jobs:
       uses: actions/setup-java@v4
       with:
         distribution: 'temurin'
-        java-version: '17'
+        java-version: '11'
         
     - name: Setup Android SDK
       uses: android-actions/setup-android@v3
@@ -65,8 +65,6 @@ jobs:
         echo "$ANDROID_HOME/platform-tools" >> $GITHUB_PATH
         echo "$ANDROID_HOME/tools" >> $GITHUB_PATH
         echo "$ANDROID_HOME/cmdline-tools/latest/bin" >> $GITHUB_PATH
-        # Skip JDK version check for Android SDK tools
-        echo "SKIP_JDK_VERSION_CHECK=true" >> $GITHUB_ENV
         # Accept Android licenses
         echo "y" | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
         echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --licenses || true
