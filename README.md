@@ -208,4 +208,3 @@ For support, please open an issue on GitHub or contact us at support@tilaawah-da
 ---
 
 **Made with ❤️ for the Muslim Ummah**
-# Tilaawah-Daily
