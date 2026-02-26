@@ -14,25 +14,33 @@ Tilaawah Daily is a comprehensive mobile app designed to help users maintain con
 
 ## 📸 Screenshots
 
-### Home Screen
-<img src="screenshots/home-screen.png" alt="Home Screen" width="300">
+<div align="center">
 
-*Main dashboard showing daily verse and progress*
+### Home Screen & Daily Verse
+<table>
+  <tr>
+    <td><img src="screenshots/home-screen.png" alt="Home Screen" width="250"></td>
+    <td><img src="screenshots/daily-verse.png" alt="Daily Verse" width="250"></td>
+  </tr>
+  <tr>
+    <td align="center"><em>Main dashboard showing daily verse and progress</em></td>
+    <td align="center"><em>Daily Quran verse with translation and audio</em></td>
+  </tr>
+</table>
 
-### Daily Verse
-<img src="screenshots/daily-verse.png" alt="Daily Verse" width="300">
+### Progress Tracking & Settings
+<table>
+  <tr>
+    <td><img src="screenshots/progress-tracking.png" alt="Progress Tracking" width="250"></td>
+    <td><img src="screenshots/settings.png" alt="Settings" width="250"></td>
+  </tr>
+  <tr>
+    <td align="center"><em>Visual progress charts and achievement badges</em></td>
+    <td align="center"><em>App preferences and notification settings</em></td>
+  </tr>
+</table>
 
-*Daily Quran verse with translation and audio*
-
-### Progress Tracking
-<img src="screenshots/progress-tracking.png" alt="Progress Tracking" width="300">
-
-*Visual progress charts and achievement badges*
-
-### Settings
-<img src="screenshots/settings.png" alt="Settings" width="300">
-
-*App preferences and notification settings*
+</div>
 
 ## ✨ Features
 
@@ -153,7 +161,8 @@ To add screenshots to the README:
 - Show key features and user flows
 - Avoid sensitive user data in screenshots
 - Optimize images for web (compress to < 200KB per image)
-- Use consistent width (300px recommended for mobile screenshots)
+- Use consistent width (250px recommended for paired screenshots)
+- Use HTML tables for side-by-side alignment in README
 
 ## 🎯 Scripts
 
