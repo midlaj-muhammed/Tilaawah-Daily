@@ -172,7 +172,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         tag_name: ${{ github.ref_name || github.event.inputs.version }}
-        release_name: Tilaawah Daily ${{ github.ref_name || github.event.inputs.version }}
+        name: Tilaawah Daily ${{ github.ref_name || github.event.inputs.version }}
         body: |
           ## 📱 Tilaawah Daily ${{ github.ref_name || github.event.inputs.version }}
           
