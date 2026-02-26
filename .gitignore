@@ -51,6 +51,9 @@ GoogleService-Info.plist
 service-account.json
 firebase-credentials.json
 
+# EAS Build files (keep config, ignore sensitive data)
+!eas.json
+
 # IDE and editor files
 .vscode/
 .idea/
