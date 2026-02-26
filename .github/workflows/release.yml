@@ -106,7 +106,7 @@ jobs:
               "client_info": {
                 "mobilesdk_app_id": "1:232177874845:android:caa81dd0f57cc42897a174",
                 "android_client_info": {
-                  "package_name": "com.midlaj.tilaawahdaily"
+                  "package_name": "com.tilaawah.daily"
                 }
               }
             }
