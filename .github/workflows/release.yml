@@ -90,6 +90,31 @@ jobs:
         echo "gradle.properties configured:"
         tail -4 android/gradle.properties
         
+    - name: Create Google Services Config
+      run: |
+        # Create a minimal google-services.json for build to pass
+        mkdir -p android/app/src/release
+        cat > android/app/src/release/google-services.json << 'EOF'
+        {
+          "project_info": {
+            "project_number": "232177874845",
+            "project_id": "tilaawah-daily",
+            "storage_bucket": "tilaawah-daily.firebasestorage.app"
+          },
+          "client": [
+            {
+              "client_info": {
+                "mobilesdk_app_id": "1:232177874845:android:caa81dd0f57cc42897a174",
+                "android_client_info": {
+                  "package_name": "com.midlaj.tilaawahdaily"
+                }
+              }
+            }
+          ]
+        }
+        EOF
+        echo "google-services.json created for build"
+        
     - name: Check Android Project
       run: |
         echo "Checking Android project structure..."
