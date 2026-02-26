@@ -42,7 +42,7 @@ jobs:
       run: |
         # Add missing JAXB modules for Android SDK tools compatibility
         sudo apt-get update
-        sudo apt-get install -y libjaxb-api-java libjaxb-impl-java
+        sudo apt-get install -y libjaxb-api-java libjaxb-java
         
     - name: Set JDK Version Check Override
       run: |
