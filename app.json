@@ -43,9 +43,11 @@
       ]
     ],
     "extra": {
+      "router": {},
       "eas": {
-        "projectId": "your-project-id-here"
+        "projectId": "7f810bfa-0505-4c61-9845-13242d36de5e"
       }
-    }
+    },
+    "owner": "midlajvalappil"
   }
 }
