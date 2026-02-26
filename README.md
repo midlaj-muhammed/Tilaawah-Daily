@@ -15,19 +15,23 @@ Tilaawah Daily is a comprehensive mobile app designed to help users maintain con
 ## 📸 Screenshots
 
 ### Home Screen
-![Home Screen](screenshots/home-screen.png)
+<img src="screenshots/home-screen.png" alt="Home Screen" width="300">
+
 *Main dashboard showing daily verse and progress*
 
 ### Daily Verse
-![Daily Verse](screenshots/daily-verse.png)
+<img src="screenshots/daily-verse.png" alt="Daily Verse" width="300">
+
 *Daily Quran verse with translation and audio*
 
 ### Progress Tracking
-![Progress Tracking](screenshots/progress-tracking.png)
+<img src="screenshots/progress-tracking.png" alt="Progress Tracking" width="300">
+
 *Visual progress charts and achievement badges*
 
 ### Settings
-![Settings](screenshots/settings.png)
+<img src="screenshots/settings.png" alt="Settings" width="300">
+
 *App preferences and notification settings*
 
 ## ✨ Features
@@ -148,6 +152,8 @@ To add screenshots to the README:
 - Include both light and dark mode if supported
 - Show key features and user flows
 - Avoid sensitive user data in screenshots
+- Optimize images for web (compress to < 200KB per image)
+- Use consistent width (300px recommended for mobile screenshots)
 
 ## 🎯 Scripts
 
