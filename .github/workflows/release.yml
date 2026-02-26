@@ -63,7 +63,7 @@ jobs:
         
     - name: Build APK
       run: |
-        eas build --platform android --profile production --non-interactive
+        eas build --platform android --profile preview --non-interactive
         
     - name: Find APK
       id: find_apk
